@@ -1,0 +1,28 @@
+Open in browser
+
+cd "big data"
+sudo vi /etc/hosts
+
+Press i
+Then below 127.0.0.1	localhost ,insert the following line
+127.0.0.1	kali
+
+Then exit by pressing Esc, followed by :wq
+
+Then paste the following command
+docker run --name cont -p 9042:9042 -p 9092:9092 -h="kali" --ip 172.17.0.2 dockercoolexp/ack-connect:latest
+
+Then open a new terminal and run the following commands. Make sure you are in "big data" folder before running them by using: cd "big data"
+
+1.	python Chat_Bot.py
+2.	flask --app app run
+
+A message may pop up telling to make port 5000 public. Click on it and then go to ports section. If it didnt appear then directly go to ports section.
+Check the lock symbol corresponding to port 5000 and make sure that it is open. If not, click on the lock symbol to open the port.
+Then either click on the link corresponding to port 5000 or copy the link and paste in the browser.
+
+The app should appear with chatbot button at the right bottom corner. Test it.
+
+Now open another terminal. Make sure you are in "big data" folder by using: cd "big data". Then type the following command:
+
+python spark.py

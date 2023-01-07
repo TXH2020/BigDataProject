@@ -1,7 +1,3 @@
-#This file is the model updater. It updates the model each time a new intents.json is uploaded. Basically we use the concept of online machine learning where we do not train 
-#on new instances from scratch every time but only on the new data. Similarly, we append new instances to the words, classes and intents data structures and pickle them but
-#not recompute them from scratch.
-
 import urllib.request as ureq
 import nltk
 import os
@@ -12,9 +8,10 @@ import numpy as np
 import random
 import json
 import pickle
+import socket
 stemmer = LancasterStemmer()
 nltk.download('punkt')
-ureq.urlretrieve('https://raw.githubusercontent.com/TXH2020/MainRepo/main/Academics/AI%20Project/intents.json','intents.json')
+ureq.urlretrieve('https://raw.githubusercontent.com/ugik/notebooks/master/intents.json','intents.json')
 # things we need for Tensorflow
 with open('intents.json') as json_data:
     intents = json.load(json_data)
@@ -67,38 +64,35 @@ for doc in documents:
 
 # shuffle our features and turn into np.array
 random.shuffle(training)
-training = np.array(training,dtype='object')
-
+training=np.array(training,dtype=object)
 # create train and test lists
 train_x = list(training[:,0])
 train_y = list(training[:,1])
 
-model=None
-if(os.path.isfile('model.h5')==False):
-    model=keras.Sequential([
-    keras.layers.Dense(8,input_shape=(len(train_x[0]),),kernel_initializer='normal'),
-    keras.layers.Dense(8,kernel_initializer='normal'),
-    keras.layers.Dense(len(train_y[0]),activation='softmax',kernel_initializer='normal')])
-    model.compile(optimizer='adam', loss='mean_squared_logarithmic_error', metrics=['accuracy'])
-else:
-    model = tf.keras.models.load_model('model.h5')
+
+model=keras.Sequential([
+keras.layers.Dense(8,input_shape=(len(train_x[0]),),kernel_initializer='normal'),
+keras.layers.Dense(8,kernel_initializer='normal'),
+keras.layers.Dense(len(train_y[0]),activation='softmax',kernel_initializer='normal')])
+model.compile(optimizer='adam', loss='mean_squared_logarithmic_error', metrics=['accuracy'])
 model.fit(np.array(train_x),np.array(train_y), epochs=1000, batch_size=8, verbose=1)
 model.save('model.h5')
 
-def check_file(name,file):
- if(os.path.isfile(name)==False):
-  with open(name,'wb') as f:
-  	pickle.dump(file,f)
- else:
-  with open(name,'rb') as f:
-	new_file=pickle.load(f)
-  if(type(file)==dict):
-   new_file['intents'].extend(file['intents'])
-  else:
-   new_file.extend(file)
-  with open(name,'wb') as f:
-	pickle.dump(new_file,f)
+with open('intents.pkl','wb') as f:
+  pickle.dump(intents,f)
+with open('classes.pkl','wb') as f:
+  pickle.dump(classes,f)
+with open('words.pkl','wb') as f:
+  pickle.dump(words,f)
 
-check_file('intents.pkl',intents)
-check_file('classes.pkl',classes)
-check_file('words.pkl',words)
+a=1
+b=1
+c=''
+with open('static/app.js','r') as f:
+    s=f.read()
+    a=s.find('https')
+    b=s.find('predict')
+    c=s[:a]
+    c=c+"https://5000-"+socket.gethostname()+".ws-us81.gitpod.io/predict"+s[b+7:]
+with open('static/app.js','w') as f:
+    f.write(c)

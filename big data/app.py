@@ -12,6 +12,9 @@ producer = KafkaProducer(bootstrap_servers=["localhost"],value_serializer = lamb
 app = Flask(__name__)
 CORS(app)
 @app.route('/',methods=['GET','POST'])
+def get():
+    return(render_template('base.html'))
+@app.route('/predict',methods=['GET','POST'])
 def predict():
     text=request.get_json().get('message')
     user_response=response(text)

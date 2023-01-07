@@ -1,0 +1,5 @@
+tensorflow-cpu
+nltk
+flask
+kafka-python
+pyspark==3.2.1

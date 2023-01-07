@@ -11,6 +11,7 @@ from nltk.stem.lancaster import LancasterStemmer
 import numpy as np
 import random
 import json
+import pickle
 stemmer = LancasterStemmer()
 nltk.download('punkt')
 ureq.urlretrieve('https://raw.githubusercontent.com/TXH2020/MainRepo/main/Academics/AI%20Project/intents.json','intents.json')

@@ -34,4 +34,4 @@ I wanted to demonstrate my work. Hence after some research I hit upon GitPod whi
   
   which is basically a snapshot of my work.
   
-  and them follow the instructions given in instructions.txt in big data folder.
+  and then follow the instructions given in instructions.txt in big data folder.

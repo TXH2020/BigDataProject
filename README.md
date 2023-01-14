@@ -35,3 +35,5 @@ I wanted to demonstrate my work. Hence after some research I hit upon GitPod whi
   which is basically a snapshot of my work.
   
   and then follow the instructions given in instructions.txt in big data folder.
+  
+The breakthrough here is that I built an app that streams data through Kafka to a Cassandra Database for storage and then apply Spark to analyze the data. 

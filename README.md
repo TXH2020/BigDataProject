@@ -21,7 +21,7 @@ After a lot of efforts, I produced an image with Kafka and Cassandra(with requir
 - It is neccessary to use the hostname "kali" and ip as mentioned here; if, however a different configuration is required then perform the following steps:
 1. Clone this repository.
 2. Go to the big-data folder: cd "big data"
-3. Modify the kafka, cassandra configuration files as per needs
+3. Modify the kafka, cassandra configuration files(cassandra-sink.properties,connect-standalone.properties,cassandra.yaml,setup.cql) as per needs
 4. Issue **docker build .**
 
 However the developer must still setup the app on his/her computer, along with the modification of hosts file and must use pyspark to connect to the database.

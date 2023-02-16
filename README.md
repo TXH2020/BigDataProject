@@ -24,7 +24,7 @@ After a lot of efforts, I produced an image with Kafka and Cassandra(with requir
 3. Modify the kafka, cassandra configuration files(cassandra-sink.properties,connect-standalone.properties,cassandra.yaml,setup.cql) as per needs
 4. Issue **docker build .**
 
-However the developer must still setup the app on his/her computer, along with the modification of hosts file and must use pyspark to connect to the database.
+However the developer had to still setup the app on his/her computer, along with the modification of hosts file and use pyspark to connect to the database.
   
 I wanted to demonstrate my work. Hence after some research I hit upon GitPod which basically is an online VM specifically meant to spin up code environments which is perfect for demonstration. I went ahead, created an account and a codespace, setup the code and boom! I finally had a demonstratable code. Now, if a developer wishes to see the code in action he/she just has to:
 - Create an account in GitPod

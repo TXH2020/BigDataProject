@@ -1,6 +1,9 @@
 In the Visual Studio Code, open a terminal. Go to "big data" folder:
 * cd "big data"
 
+Then issue the following command:
+* pip install -r requirements.txt
+
 Then the hosts file must be modified; so first type
 * sudo vi /etc/hosts
 The hosts filed is opened in VI editor.
@@ -15,7 +18,7 @@ docker run --name cont -p 9042:9042 -p 9092:9092 -h="kali" --ip 172.17.0.2 docke
 A long sequence of instructions will appear. In about 4-5 min, the process should be completed. In the end if you see some lines like this: groupID commit offset topic ...... then everything has run successfully(kafka, cassandra servers started and connected to each other)
 
 Then open a new terminal and run the following commands. Make sure you are in "big data" folder before running them by using: cd "big data"
-
+Open the Chat_Bot.py file. Change "usxxx" in line 96 according to the workspace url.
 * python Chat_Bot.py
 * flask --app app run
 

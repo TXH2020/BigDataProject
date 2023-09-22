@@ -11,7 +11,7 @@ import pickle
 import socket
 stemmer = LancasterStemmer()
 nltk.download('punkt')
-ureq.urlretrieve('https://raw.githubusercontent.com/TXH2020/fast-labeling-workflow/master/abcd.json','intents.json')
+ureq.urlretrieve('https://raw.githubusercontent.com/TXH2020/fast-labeling-workflow/master/Datasets/tango_intents.json','intents.json')
 # things we need for Tensorflow
 with open('intents.json') as json_data:
     intents = json.load(json_data)

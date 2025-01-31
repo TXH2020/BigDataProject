@@ -70,3 +70,14 @@ select * from kafka_examples.stocks_table_by_exchange limit 10;
 (2 rows)
 
 ```
+
+## Bonus: Connect Spark to Cassandra
+
+1. Install Python. Create a Virtual Environment
+2. pip install pyspark
+3. pyspark --packages com.datastax.spark:spark-cassandra-connector_2.12:3.5.1 --conf spark.cassandra.connection.host=172.18.0.3 --conf spark.sql.extensions=com.datastax.spark.connector.CassandraSparkExtensions.
+   
+   Find the IP of the Cassandra container using docker inspect and pass it as shown above.
+4. Type in the following commands in pyspark shell:
+   1. spark.conf.set("spark.sql.catalog.myCatalog", "com.datastax.spark.connector.datasource.CassandraCatalog")
+   2. spark.read.table("myCatalog.ping_keyspace.ping_table").show()

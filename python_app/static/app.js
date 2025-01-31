@@ -46,7 +46,8 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('https://5000-blablabla.ws-us81.gitpod.io/predict', {
+        // fix the IP or host here.
+        fetch('http://192.168.0.115:5000/ping', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',

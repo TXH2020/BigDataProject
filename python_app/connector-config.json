@@ -1,0 +1,13 @@
+{
+  "name": "kafka-cassandra-connector",
+  "config": {
+    "connector.class": "com.datastax.oss.kafka.sink.CassandraSinkConnector",
+    "tasks.max": "10",
+    "topics": "ping",
+    "contactPoints": "cassandra",
+    "loadBalancing.localDc": "datacenter1",
+    "topic.ping.ping_keyspace.ping_table.mapping": "request=value.request, response=value.response",
+    "topic.ping.ping_keyspace.ping_table.consistencyLevel": "LOCAL_QUORUM"
+  }
+}
+
